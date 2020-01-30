@@ -9,7 +9,8 @@
     "private": true,
     "scripts": {
         "sdev": "ts-node-dev --respawn .",
-        "cdev": "parcel --port 8080 client/index.html"
+        "cdev": "parcel --port 8080 client/index.html",
+        "lint": "eslint --ignore-path .gitignore **/*.{js,ts,tsx} --fix"
     },
     "dependencies": {
         "react": "^16.12.0",
@@ -19,9 +20,20 @@
         "@types/node": "^13.5.2",
         "@types/react": "^16.9.19",
         "@types/react-dom": "^16.9.5",
+        "@typescript-eslint/eslint-plugin": "^2.18.0",
+        "@typescript-eslint/parser": "^2.18.0",
+        "eslint": "^6.8.0",
+        "eslint-config-prettier": "^6.10.0",
+        "eslint-plugin-prettier": "^3.1.2",
+        "eslint-plugin-react": "^7.18.0",
         "parcel-bundler": "^1.12.4",
+        "prettier": "^1.19.1",
         "ts-node": "^8.6.2",
         "ts-node-dev": "^1.0.0-pre.44",
         "typescript": "^3.7.5"
-    }
+    },
+    "browserslist": [
+        "last 1 Chrome version",
+        "last 1 Firefox version"
+    ]
 }

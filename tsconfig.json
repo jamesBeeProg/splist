@@ -5,7 +5,6 @@
         "outDir": "compiled",
         "target": "es2019",
         "jsx": "react",
-        "jsxFactory": "createElement",
         "lib": [
             "esnext",
             "DOM"
