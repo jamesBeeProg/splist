@@ -1,0 +1,26 @@
+{
+    "compilerOptions": {
+        "locale": "en",
+        "module": "commonjs",
+        "outDir": "compiled",
+        "target": "es2019",
+        "jsx": "react",
+        "jsxFactory": "createElement",
+        "lib": [
+            "esnext",
+            "DOM"
+        ],
+        "esModuleInterop": true,
+        "strict": true,
+        "strictPropertyInitialization": false,
+        "emitDecoratorMetadata": true,
+        "experimentalDecorators": true,
+    },
+    "exclude": [
+        "node_modules"
+    ],
+    "include": [
+        "./client/**/*",
+        "./server/**/*"
+    ]
+}

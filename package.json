@@ -1,0 +1,27 @@
+{
+    "name": "splist",
+    "version": "0.0.0",
+    "main": "server/index.ts",
+    "browser": "client/index.html",
+    "repository": "http://github.com/jamesBeeProg/splist.git",
+    "author": "James <jamesBeeProg@gmail.com>",
+    "license": "AGPL-3.0",
+    "private": true,
+    "scripts": {
+        "sdev": "ts-node-dev --respawn .",
+        "cdev": "parcel --port 8080 client/index.html"
+    },
+    "dependencies": {
+        "react": "^16.12.0",
+        "react-dom": "^16.12.0"
+    },
+    "devDependencies": {
+        "@types/node": "^13.5.2",
+        "@types/react": "^16.9.19",
+        "@types/react-dom": "^16.9.5",
+        "parcel-bundler": "^1.12.4",
+        "ts-node": "^8.6.2",
+        "ts-node-dev": "^1.0.0-pre.44",
+        "typescript": "^3.7.5"
+    }
+}
