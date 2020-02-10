@@ -1,0 +1,6 @@
+query fetchMessages($input: MessagesInput!) {
+    messages(input: $input) {
+        id
+        content
+    }
+}

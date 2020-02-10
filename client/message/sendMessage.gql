@@ -1,0 +1,8 @@
+mutation sendMessage($content: String!) {
+    sendMessage(input: {
+        content: $content,
+    }) {
+        id
+        content
+    }
+}

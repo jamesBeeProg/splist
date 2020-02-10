@@ -1,3 +1,8 @@
 import React from 'react';
+import { MessageView } from './message/MessageView';
 
-export const App = () => <h1>Hello there</h1>;
+export const App = () => (
+    <div>
+        <MessageView />
+    </div>
+);
