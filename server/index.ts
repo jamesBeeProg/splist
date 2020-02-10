@@ -26,6 +26,9 @@ import { Container } from 'typedi';
 
     const server = new ApolloServer({
         schema,
+        subscriptions: {
+            path: '/',
+        },
     });
 
     server.applyMiddleware({ app });
