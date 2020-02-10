@@ -12,7 +12,7 @@ export const MessageView: FC = () => {
     });
 
     if (loading) return <p>Loading...</p>;
-    if (error) return <p>Error: {error.toString()}</p>;
+    if (error) return <p>{error.toString()}</p>;
     if (!data) return <p>No data?</p>;
 
     return (

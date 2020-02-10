@@ -27,7 +27,7 @@ import { Container } from 'typedi';
     const server = new ApolloServer({
         schema,
         subscriptions: {
-            path: '/',
+            path: '/graphql',
         },
     });
 
