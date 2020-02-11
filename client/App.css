@@ -1,0 +1,57 @@
+.app {
+	/* Force clamp to window size */
+	width: 100vw;
+	height: 100vh;
+
+	display: grid;
+	grid:
+		" navbar branch-header general-header general-header" 1fr
+		" navbar channel-list  main           member-list   " 10fr
+		" navbar toolbar       footer         member-list   " 1fr
+		/ 1fr    3fr           8fr            3fr           ;
+}
+
+.branch-header {
+	grid-area: branch-header;
+	background-color: var(--aside-background);
+	box-shadow: 0 5px 50px -10px rgba(0, 0, 0, 1);
+	z-index: 2;
+}
+
+.general-header {
+	grid-area: general-header;
+	background-color: var(--main-background);
+	box-shadow: 0 5px 50px -10px rgba(0, 0, 0, 1);
+	z-index: 1;
+}
+
+.navbar {
+	grid-area: navbar;
+	background-color: var(--navbar-background);
+	z-index: 3;
+}
+
+.channel-list {
+    grid-area: channel-list;
+    background-color: var(--aside-background);
+}
+
+.main {
+    grid-area: main;
+    background-color: var(--main-background);
+}
+
+.member-list {
+	grid-area: member-list;
+	background-color: var(--aside-background);
+}
+
+.toolbar {
+	grid-area: toolbar;
+	background-color: var(--toolbar-background);
+}
+
+.footer {
+    grid-area: footer;
+    background-color: var(--main-background);
+}
