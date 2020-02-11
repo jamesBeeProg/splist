@@ -8,3 +8,4 @@ dist/
 # Generated
 schema.gql
 client/generated/
+/**/*.css.d.ts
