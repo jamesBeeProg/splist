@@ -24,6 +24,6 @@ export class MessageInput implements Partial<Message> {
 @InputType()
 export class SendMessageInput implements Partial<Message> {
     @Field()
-    @Length(2, 200)
+    @Length(1, 200)
     public content: string;
 }
