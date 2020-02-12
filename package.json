@@ -11,7 +11,7 @@
         "sdev": "ts-node-dev --respawn .",
         "cdev": "parcel --port 8080 client/index.html",
         "lint": "eslint --ignore-path .gitignore **/*.{js,ts,tsx} --fix",
-        "gen": "graphql-codegen --config codegen.yml && tcm client"
+        "gen": "graphql-codegen --config codegen.yml"
     },
     "dependencies": {
         "@apollo/react-hooks": "^3.1.3",
@@ -24,17 +24,15 @@
         "apollo-server-express": "^2.9.16",
         "autoprefixer": "^9.7.4",
         "class-validator": "^0.11.0",
-        "classnames": "^2.2.6",
         "graphql": "^14.6.0",
         "graphql-tag": "^2.10.3",
-        "postcss-modules": "^1.5.0",
         "react": "^16.12.0",
         "react-dom": "^16.12.0",
         "reflect-metadata": "^0.1.13",
         "sqlite3": "^4.1.1",
+        "styled-components": "^5.0.1",
         "subscriptions-transport-ws": "^0.9.16",
         "type-graphql": "^0.17.6",
-        "typed-css-modules": "^0.6.3",
         "typedi": "^0.8.0",
         "typeorm": "^0.2.22",
         "typeorm-typedi-extensions": "^0.2.3"
@@ -50,6 +48,7 @@
         "@types/node": "^13.5.2",
         "@types/react": "^16.9.19",
         "@types/react-dom": "^16.9.5",
+        "@types/styled-components": "^4.4.3",
         "@typescript-eslint/eslint-plugin": "^2.18.0",
         "@typescript-eslint/parser": "^2.18.0",
         "eslint": "^6.8.0",
