@@ -1,6 +1,7 @@
 module.exports = {
     rules: {
         '@typescript-eslint/explicit-function-return-type': 0,
+        'react/prop-types': 0
     },
     parser: '@typescript-eslint/parser',
     extends: [
