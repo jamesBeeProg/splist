@@ -1,17 +1,35 @@
-import React, { FC, useEffect } from 'react';
+import React, { FC, useEffect, useLayoutEffect, RefObject } from 'react';
 import {
     useFetchMessagesQuery,
     MessageSentDocument,
-    MessageSentSubscriptionResult,
     MessageSentSubscription,
 } from '../generated/graphql';
+import { MessageItem } from './MessageItem';
+import styled from 'styled-components';
 
-export const MessageView: FC = () => {
-    const { loading, error, data, subscribeToMore } = useFetchMessagesQuery({
+const TAKE_AMOUNT = 10;
+
+const MessageContainer = styled.div`
+    display: flex;
+    flex-direction: column-reverse;
+`;
+
+interface Props {
+    scrollRef: RefObject<HTMLDivElement>;
+}
+
+export const MessageView: FC<Props> = ({ scrollRef }) => {
+    const {
+        loading,
+        error,
+        data,
+        subscribeToMore,
+        fetchMore,
+    } = useFetchMessagesQuery({
         variables: {
             input: {
                 skip: 0,
-                take: 30,
+                take: TAKE_AMOUNT,
             },
         },
     });
@@ -35,15 +53,39 @@ export const MessageView: FC = () => {
         }),
     );
 
+    useLayoutEffect(() => {
+        if (!scrollRef.current) return;
+        scrollRef.current.scrollTop = scrollRef.current.scrollHeight;
+    });
+
     if (loading) return <p>Loading...</p>;
     if (error) return <p>{error.toString()}</p>;
     if (!data) return <p>No data?</p>;
 
+    const loadMore = () =>
+        fetchMore({
+            variables: {
+                input: {
+                    skip: data.messages.length,
+                    take: TAKE_AMOUNT,
+                },
+            },
+            updateQuery(prev, { fetchMoreResult: data }) {
+                if (!data) return prev;
+
+                return {
+                    ...prev,
+                    messages: [...prev.messages, ...data.messages],
+                };
+            },
+        });
+
     return (
-        <ul>
+        <MessageContainer>
             {data.messages.map(msg => (
-                <li key={msg.id}>{msg.content}</li>
+                <MessageItem key={msg.id} {...msg} />
             ))}
-        </ul>
+            <button onClick={loadMore}>Load More</button>
+        </MessageContainer>
     );
 };

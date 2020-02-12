@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import { MessageView } from './message/MessageView';
 import { MessageInput } from './message/MessageInput';
 import styled, { createGlobalStyle } from 'styled-components';
@@ -36,52 +36,64 @@ const LodgeHeader = styled.header`
     box-shadow: 0 5px 50px -10px rgba(0, 0, 0, 1);
     z-index: 2;
 `;
+
 const ChannelHeader = styled.header`
     grid-area: general-header;
     background-color: var(--main-background);
     box-shadow: 0 5px 50px -10px rgba(0, 0, 0, 1);
     z-index: 1;
 `;
+
 const Navbar = styled.nav`
     grid-area: navbar;
     background-color: var(--navbar-background);
     z-index: 3;
 `;
+
 const ChannelList = styled.aside`
     grid-area: channel-list;
     background-color: var(--aside-background);
 `;
+
 const Main = styled.main`
     grid-area: main;
     background-color: var(--main-background);
+    overflow-y: scroll;
 `;
+
 const MemberList = styled.aside`
     grid-area: member-list;
     background-color: var(--aside-background);
 `;
+
 const Toolbar = styled.footer`
     grid-area: toolbar;
     background-color: var(--toolbar-background);
 `;
+
 const Footer = styled.footer`
     grid-area: footer;
     background-color: var(--main-background);
 `;
 
-export const App = () => (
-    <Grid>
-        <Theme />
-        <LodgeHeader></LodgeHeader>
-        <ChannelHeader></ChannelHeader>
-        <Navbar></Navbar>
-        <ChannelList></ChannelList>
-        <Main>
-            <MessageView />
-        </Main>
-        <MemberList></MemberList>
-        <Toolbar></Toolbar>
-        <Footer>
-            <MessageInput />
-        </Footer>
-    </Grid>
-);
+export const App = () => {
+    const mainRef = useRef<HTMLDivElement>(null);
+
+    return (
+        <Grid>
+            <Theme />
+            <LodgeHeader></LodgeHeader>
+            <ChannelHeader></ChannelHeader>
+            <Navbar></Navbar>
+            <ChannelList></ChannelList>
+            <Main ref={mainRef}>
+                <MessageView scrollRef={mainRef} />
+            </Main>
+            <MemberList></MemberList>
+            <Toolbar></Toolbar>
+            <Footer>
+                <MessageInput />
+            </Footer>
+        </Grid>
+    );
+};
