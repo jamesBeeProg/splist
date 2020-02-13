@@ -1,4 +1,5 @@
 import 'reflect-metadata';
+import 'dotenv/config';
 import http from 'http';
 import express from 'express';
 import { ApolloServer } from 'apollo-server-express';
@@ -20,7 +21,7 @@ import { Container } from 'typedi';
 
     const schema = await buildSchema({
         resolvers: [__dirname + '/**/{*.res,resolver}.ts'],
-        emitSchemaFile: __dirname + '/../schema.gql',
+        emitSchemaFile: __dirname + '/generated/schema.gql',
         container: Container,
     });
 

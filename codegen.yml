@@ -1,5 +1,5 @@
 overwrite: true
-schema: "schema.gql"
+schema: "server/generated/schema.gql"
 documents: "client/**/*.gql"
 generates:
   client/generated/graphql.tsx:
