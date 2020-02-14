@@ -33,6 +33,8 @@ import { AuthService } from './user/auth/service';
         schema,
         subscriptions: {
             path: '/graphql',
+            // eslint-disable-next-line @typescript-eslint/no-explicit-any
+            onConnect: i => i,
         },
         context(ctx) {
             return Container.get(AuthService).getContext(ctx);

@@ -19,9 +19,13 @@ export class AuthService {
     @InjectRepository(User)
     private userRepo: Repository<User>;
 
-    public async getContext({ req }: ExpressContext) {
+    public async getContext({ req, connection }: ExpressContext) {
         // Get the second part of a Bearer token
-        const token = (req.headers.authorization ?? '').split(' ')[1];
+        const token = (
+            req?.headers?.authorization ??
+            connection?.context?.authToken ??
+            ''
+        ).split(' ')[1];
 
         // Get user, if undef then return null
         const user = (await this.getUserFromToken(token)) ?? null;
