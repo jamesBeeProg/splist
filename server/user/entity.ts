@@ -1,6 +1,7 @@
 import { Entity, PrimaryGeneratedColumn, Column, OneToMany } from 'typeorm';
 import { ObjectType, Field } from 'type-graphql';
 import { Message } from '../message/entity';
+import { Lazy } from '../util';
 
 @Entity()
 @ObjectType()
@@ -16,10 +17,15 @@ export class User {
     @Column({ select: false })
     public password: string;
 
+    @Column()
+    @Field()
+    public isOperator: boolean;
+
     @OneToMany(
         () => Message,
         msg => msg.author,
         { lazy: true },
     )
-    public messages: Promise<Message[]>;
+    @Field(() => [Message])
+    public messages: Lazy<Message[]>;
 }

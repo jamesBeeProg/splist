@@ -1,6 +1,7 @@
 import { Entity, PrimaryGeneratedColumn, Column, ManyToOne } from 'typeorm';
 import { ObjectType, Field } from 'type-graphql';
 import { User } from '../user/entity';
+import { Lazy } from '../util';
 
 @Entity()
 @ObjectType()
@@ -18,5 +19,6 @@ export class Message {
         user => user.messages,
         { lazy: true },
     )
-    public author: Promise<User>;
+    @Field(() => User)
+    public author: Lazy<User>;
 }

@@ -6,6 +6,7 @@ import { ApolloServer } from 'apollo-server-express';
 import { buildSchema } from 'type-graphql';
 import { createConnection, useContainer } from 'typeorm';
 import { Container } from 'typedi';
+import { AuthService } from './user/auth/service';
 
 // Can be removed when topLevelAwait is added to typescript
 (async () => {
@@ -23,12 +24,18 @@ import { Container } from 'typedi';
         resolvers: [__dirname + '/**/{*.res,resolver}.ts'],
         emitSchemaFile: __dirname + '/generated/schema.gql',
         container: Container,
+        authChecker(data, perms) {
+            return Container.get(AuthService).checkAuthorisation(data, perms);
+        },
     });
 
     const server = new ApolloServer({
         schema,
         subscriptions: {
             path: '/graphql',
+        },
+        context(ctx) {
+            return Container.get(AuthService).getContext(ctx);
         },
     });
 
