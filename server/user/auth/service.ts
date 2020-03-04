@@ -23,7 +23,7 @@ export class AuthService {
         // Get the second part of a Bearer token
         const token = (
             req?.headers?.authorization ??
-            connection?.context?.authToken ??
+            connection?.context?.Authorization ??
             ''
         ).split(' ')[1];
 
