@@ -1,3 +1,3 @@
 # Splist
 
-Description TODO
+A demo chat thing
