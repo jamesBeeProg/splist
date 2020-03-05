@@ -32,7 +32,7 @@ export class AuthResolver {
             where: {
                 handle: input.handle,
             },
-            select: ['password'],
+            select: ['password', 'id'],
         });
 
         if (!userPass) throw new AuthenticationError('Invalid Login');
