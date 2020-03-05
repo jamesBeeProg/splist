@@ -5,6 +5,7 @@ import { WebSocketLink } from 'apollo-link-ws';
 import { onError } from 'apollo-link-error';
 import { ApolloLink, split } from 'apollo-link';
 import { getMainDefinition } from 'apollo-utilities';
+import { setContext } from 'apollo-link-context';
 
 // Create a apollo client with custom link stack
 export const createClient = (httpUrl: string, wsUrl: string) => {
@@ -18,6 +19,14 @@ export const createClient = (httpUrl: string, wsUrl: string) => {
         if (networkError) console.log(`[Network error]: ${networkError}`);
     });
 
+    const authLink = setContext((_, { headers, ...context }) => ({
+        ...context,
+        headers: {
+            ...headers,
+            Authorization: `Bearer ${localStorage.getItem('auth:token') ?? ''}`,
+        },
+    }));
+
     const httpLink = new HttpLink({
         uri: httpUrl,
     });
@@ -26,6 +35,9 @@ export const createClient = (httpUrl: string, wsUrl: string) => {
         uri: wsUrl,
         options: {
             reconnect: true,
+            connectionParams: () => ({
+                authToken: `Bearer ${localStorage.getItem('auth:token') ?? ''}`,
+            }),
         },
     });
 
@@ -42,7 +54,7 @@ export const createClient = (httpUrl: string, wsUrl: string) => {
         httpLink,
     );
 
-    const link = ApolloLink.from([errorLink, splitLink]);
+    const link = ApolloLink.from([errorLink, authLink, splitLink]);
 
     return new ApolloClient({
         cache: new InMemoryCache(),
