@@ -2,5 +2,9 @@ query fetchMessages($input: MessagesInput!) {
     messages(input: $input) {
         id
         content
+        author {
+            id
+            handle
+        }
     }
 }
