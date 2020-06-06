@@ -22,7 +22,7 @@
         "apollo-link-error": "^1.1.12",
         "apollo-link-http": "^1.5.16",
         "apollo-link-ws": "^1.0.19",
-        "apollo-server-express": "^2.9.16",
+        "apollo-server-express": "^2.14.2",
         "autoprefixer": "^9.7.4",
         "bcryptjs": "^2.4.3",
         "class-validator": "^0.11.0",
